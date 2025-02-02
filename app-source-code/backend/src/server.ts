@@ -19,3 +19,21 @@ app.use(morgan("combined"));
 app.use(cors())
 app.use(bodyParser.json())
 // app.use(bodyParser.urlencoded({ limit: '100mb', extended: false }));
+
+
+app.use(`${api}/super`, superAdminRoute)
+app.use(`${api}/admin`, adminRoute)
+app.use(`${api}/agent`, agentRoute)
+app.use(`${api}/user`, userRoute)
+app.get(`${api}`, (req, res) => {
+    res.send({
+        id: new Date(),
+        port: PORT,
+        name: 'Tro Vest Alajo'
+    })
+})
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.listen(PORT, () => {
+    console.log(`App listening on port ${PORT}`)
+})
