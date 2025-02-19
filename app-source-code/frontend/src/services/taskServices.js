@@ -1,4 +1,4 @@
-import axios from "axios"; // Importing axios to make HTTP requests to the backend
+import axios from "axios"; //
 const apiUrl = process.env.REACT_APP_BACKEND_URL //"http://localhost:8080/api/tasks";
 console.log(apiUrl)
 export function getTasks() {
