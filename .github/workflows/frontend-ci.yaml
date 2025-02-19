@@ -4,10 +4,13 @@ on:
     paths:
       - 'app-source-code/frontend/**'
     paths-ignore:
-      - '.github/workflows/backend.yaml'
-      - '.github/workflows/eks.yaml'  
+      - '.github/workflows/backend-ci.yaml'
+      - '.github/workflows/eks-ci.yaml'  
   pull_request:
     branches: [ "main" ]
     paths:
       - 'app-source-code/frontend/**'
+    paths-ignore:
+      - '.github/workflows/backend-ci.yaml'
+      - '.github/workflows/eks-ci.yaml'    
   workflow_dispatch:

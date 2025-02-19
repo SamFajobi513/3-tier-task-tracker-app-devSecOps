@@ -8,12 +8,15 @@ on:
     paths:
       - 'app-source-code/backend/**'
     paths-ignore:
-      - '.github/workflows/frontend.yaml'
-      - '.github/workflows/eks.yaml'   
+      - '.github/workflows/frontend-ci.yaml'
+      - '.github/workflows/eks-ci.yaml'   
   pull_request:
     branches: [ "main" ]
     paths:
       - 'app-source-code/backend/**'
+    paths-ignore:
+      - '.github/workflows/frontend-ci.yaml'
+      - '.github/workflows/eks-ci.yaml'     
   workflow_dispatch:
 
 jobs:
