@@ -6,11 +6,11 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - 'app-source-code/backend/'
+      - 'app-source-code/backend/**'
   pull_request:
     branches: [ "main" ]
     paths:
-      - 'app-source-code/backend/'
+      - 'app-source-code/backend/**'
   workflow_dispatch:
 
 jobs:
