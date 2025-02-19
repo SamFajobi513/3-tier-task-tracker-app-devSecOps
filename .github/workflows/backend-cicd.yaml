@@ -1,4 +1,4 @@
-name: Frontend Application
+name: backend Application
 env:
   AWS_REGION: us-east-1               
   ECR_REPOSITORY: backend-tracker
@@ -25,5 +25,13 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 16.x 
+        cache: 'npm'
     - 
-      name: 
+      name: Install Dependencies
+      uses: npm ci
+    - 
+      name: Run Linting
+      uses: npm run lint
+    - 
+      name: Run Tests
+      uses: actions/checkout@v4     
