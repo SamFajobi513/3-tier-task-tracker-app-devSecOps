@@ -1,5 +1,5 @@
 import React from "react";
-import Tasks from "./Tasks";
+import Tasks from "./Tasks"; //import tasks class from Tasks.js
 import { Paper, TextField, Checkbox, Button } from "@material-ui/core";
 import "./App.css"; // Update your CSS file accordingly, be carefule while updating the CSS file
 
