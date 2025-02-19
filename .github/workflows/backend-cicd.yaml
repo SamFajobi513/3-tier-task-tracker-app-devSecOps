@@ -1,0 +1,29 @@
+name: Frontend Application
+env:
+  AWS_REGION: us-east-1               
+  ECR_REPOSITORY: backend-tracker
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'app-source-code/backend/'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'app-source-code/backend/'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - 
+      name: Checkout repository
+      uses: actions/checkout@v4
+    - 
+      name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16.x 
+    - 
+      name: 
