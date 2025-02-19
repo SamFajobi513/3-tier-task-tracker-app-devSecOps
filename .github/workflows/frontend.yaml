@@ -3,6 +3,9 @@ on:
     branches: [ "main" ]
     paths:
       - 'app-source-code/frontend/**'
+    paths-ignore:
+      - '.github/workflows/backend.yaml'
+      - '.github/workflows/eks.yaml'  
   pull_request:
     branches: [ "main" ]
     paths:
