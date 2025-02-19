@@ -1,0 +1,10 @@
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'app-source-code/frontend/**'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'app-source-code/frontend/**'
+  workflow_dispatch:
