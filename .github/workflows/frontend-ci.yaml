@@ -14,3 +14,26 @@ on:
       - '.github/workflows/backend-ci.yaml'
       - '.github/workflows/eks-ci.yaml'    
   workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - 
+      name: Checkout repository
+      uses: actions/checkout@v4
+    - 
+      name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16.x 
+        cache: 'npm'
+    - 
+      name: Install Dependencies
+      uses: npm ci
+    - 
+      name: Run Linting
+      uses: npm run lint
+    - 
+      name: Run Tests
+      uses: actions/checkout@v4     
