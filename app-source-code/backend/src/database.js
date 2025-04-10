@@ -10,6 +10,7 @@ module.exports = async () => {
         if(useDBAuth){
             connectionParams.user = process.env.MONGO_USERNAME;
             connectionParams.pass = process.env.MONGO_PASSWORD;
+            connectionParams.pass = process.env.MONGO_PASSWORD;
         }
         await mongoose.connect(
            process.env.MONGO_CONN_STR,
