@@ -27,3 +27,10 @@ spec:
                 name: api
                 port:
                   number: 3500
+          - path: /ready
+            pathType: Exact
+            backend:
+              service:
+                name: api
+                port:
+                  number: 3500        
