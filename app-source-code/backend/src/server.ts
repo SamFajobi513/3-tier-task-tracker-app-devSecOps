@@ -34,3 +34,13 @@ app.get('/ready', (req, res) => {
     }
 });
 
+// Startup check to ensure the server has started correctly
+app.get('/started', (req, res) => {
+    // Assuming the server has started correctly if this endpoint is reachable
+    res.status(200).send('Started');
+});
+
+app.use("/api/tasks", tasks);
+
+const port = process.env.PORT || 3500;
+app.listen(port, () => console.log(`Listening on port ${port}...`));
