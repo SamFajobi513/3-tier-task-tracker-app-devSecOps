@@ -1,39 +1,36 @@
-import express, { Application } from 'express'
-import cors from 'cors'
-import morgan from 'morgan'
-import bodyParser from 'body-parser'
-require('dotenv').config()
-require('./database')
-import swaggerUi from 'swagger-ui-express'
-import swaggerDocument from './swagger.json';
-import agentRoute from './routes/agent.routes';
-import adminRoute from './routes/admin.routes';
-import superAdminRoute from './routes/superadmin.routes';
-import userRoute from './routes/user.routes';
+const tasks = require("./routes/tasks");
+const connection = require("./db");
+const cors = require("cors");
+const express = require("express");
+const app = express();
+const mongoose = require('mongoose');
 
-const api: string = '/api/v1'
-const app: Application = express()
-const PORT: any = process.env.PORT || 5120
+connection();
 
-app.use(morgan("combined"));
-app.use(cors())
-app.use(bodyParser.json())
-// app.use(bodyParser.urlencoded({ limit: '100mb', extended: false }));
+app.use(express.json());
+app.use(cors());
 
+// Health check endpoints
 
-app.use(`${api}/super`, superAdminRoute)
-app.use(`${api}/admin`, adminRoute)
-app.use(`${api}/agent`, agentRoute)
-app.use(`${api}/user`, userRoute)
-app.get(`${api}`, (req, res) => {
-    res.send({
-        id: new Date(),
-        port: PORT,
-        name: 'Tro Vest Alajo'
-    })
-})
+// Basic health check to see if the server is running
+app.get('/healthz', (req, res) => {
+    res.status(200).send('Healthy');
+});
 
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-app.listen(PORT, () => {
-    console.log(`App listening on port ${PORT}`)
-})
+let lastReadyState = null;  
+// Readiness check to see if the server is ready to serve requests
+app.get('/ready', (req, res) => {
+    // Here you can add logic to check database connection or other dependencies
+    const isDbConnected = mongoose.connection.readyState === 1;
+    if (isDbConnected !== lastReadyState) {
+        console.log(`Database readyState: ${mongoose.connection.readyState}`);
+        lastReadyState = isDbConnected;
+    }
+    
+    if (isDbConnected) {
+        res.status(200).send('Ready');
+    } else {
+        res.status(503).send('Not Ready');
+    }
+});
+
