@@ -9,7 +9,7 @@ resource "aws_instance" "ec2" {
   }
   user_data = templatefile("./install.sh", {})
 
-  tags = {
+  tags = {  
     Name = var.instance-name
   }
 }
@@ -29,7 +29,7 @@ resource "aws_security_group" "security-group" {
       ipv6_cidr_blocks = ["::/0"]
       self             = false
       prefix_list_ids  = []
-      security_groups  = []
+      security_groups  = []w
       cidr_blocks      = ["0.0.0.0/0"]
     }
   ]

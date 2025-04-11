@@ -1,7 +1,6 @@
 import React from "react"; 
 import Tasks from "./Tasks"; 
 import { Paper, TextField, Checkbox, Button } from "@material-ui/core";
-    connectionParams.pass = process.env.MONGO_PASSWORD;
 import "./App.css"; // Update your CSS file accordingly, be carefule while updating the CSS file
 
 class App extends Tasks {
